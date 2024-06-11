@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question1</title>
+    <style>
+        .question {
+            display: none;
+        }
+        .question.active {
+            display: block;
+        }
+        .answer {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 5px 0;
+            cursor: pointer;
+            position: relative;
+            display: flex;
+            align-items: center;
+            width: auto;
+        }
+        .answer:hover {
+            background-color: #f0f0f0;
+        }
+        .answer input[type="radio"] {
+            display: none;
+        }
+        .answer label {
+            cursor: pointer;
+            margin-left: 40px;
+            flex: 1;
+        }
+        .letter-box {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 1px solid #000;
+            padding: 2px 5px;
+            font-weight: bold;
+            color: black;
+            background-color: white;
+        }
+        .answer.selected .letter-box {
+            color: white;
+            background-color: black;
+        }
+        .question-number {
+            font-weight: bold;
+        }
+        .question-text {
+            color: #333; /* Change this to the desired color for question text */
+        }
+        .answer-text {
+            color: #555; /* Change this to the desired color for answer text */
+        }
+        button {
+            background-color: #007BFF; /* Button background color */
+            color: #fff; /* Button text color */
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin: 10px 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .progress-bar-container {
+            width: 100%;
+            background-color: #f3f3f3;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+            height: 10px; /* Make the progress bar thin */
+        }
+        .progress-bar {
+            height: 100%;
+            background-color: #007BFF; /* Change this to your desired color */
+            width: 0;
+        }
+    </style>
+</head>
+
+<body>
+<div class="progress-bar-container">
+    <div id="progressBar" class="progress-bar"></div>
+</div>
+
+<form id="surveyForm" action="https://docs.google.com/forms/d/e/1FAIpQLSciKWr8uFenb29LpklvR_Nxb60yn_8Pp0blEFLDCc9bXyLMWw/formResponse">
+
+    <!-- Question: Which condition best describes you? -->
+    <div class="question active" id="question1">
+        <p class="question-text question-number">1 &rarr; Which condition best describes you?</p>
+        <div class="answer" onclick="selectAnswer(this)">
+            <span class="letter-box">A</span>
+            <input type="radio" id="answer1a" name="entry.1626259462" value="Missing+One+or+Multiple+Teeth">
+            <label class="answer-text" for="answer1a">Missing One or Multiple Teeth</label>
+        </div>
+        <div class="answer" onclick="selectAnswer(this)">
+            <span class="letter-box">B</span>
+            <input type="radio" id="answer1b" name="entry.1626259462" value="Struggling+With+Traditional+Dentures">
+            <label class="answer-text" for="answer1b">Struggling With Traditional Dentures</label>
+        </div>
+        <div class="answer" onclick="selectAnswer(this)">
+            <span class="letter-box">C</span>
+            <input type="radio" id="answer1c" name="entry.1626259462" value="Most+Of+My+Teeth+Are+In+Pretty+Bad+Shape">
+            <label class="answer-text" for="answer1c">Most Of My Teeth Are In Pretty Bad Shape</label>
+        </div>
+        <button type="button" onclick="nextQuestion(1)">Next</button>
+    </div>
+
+    <!-- Question: Select your age range. -->
+    <div class="question" id="question2">
+        <p class="question-text question-number">2 &rarr; Select your age range.</p>
+        <div class="answer" onclick="selectAnswer(this)">
+            <span class="letter-box">A</span>
+            <input type="radio" id="answer2a" name="entry.1696836574" value="60%2B">
+            <label class="answer-text" for="answer2a">60+</label>
+        </div>
+        <div class="answer" onclick="selectAnswer(this)">
+            <span class="letter-box">B</span>
+            <input type="radio" id="answer2b" name="entry.1696836574" value="50-59">
+            <label class="answer-text" for="answer2b">50-59</label>
+        </div>
+        <div class="answer" onclick="selectAnswer(this)">
+            <span class="letter-box">C</span>
+            <input type="radio" id="answer2c" name="entry.1696836574" value="40-49">
+            <label class="answer-text" for="answer2c">40-49</label>
+        </div>
+        <div class="answer" onclick="selectAnswer(this)">
+            <span class="letter-box">D</span>
+            <input type="radio" id="answer2d" name="entry.1696836574" value="%3C40">
+            <label class="answer-text" for="answer2d"><40</label>
+        </div>
+        <button type="button" onclick="previousQuestion(2)">Back</button>
+        <button type="button" onclick="nextQuestion(2)">Next</button>
+    </div>
+
+    <!-- Question: Do you currently have any of these dental solutions? -->
+    <div class="question" id="question3">
+        <p class="question-text question-number">3 &rarr; Do you currently have any of these dental solutions?</p>
+        <div class="answer" onclick="selectAnswer(this)">
+            <span class="letter-box">A</span>
+            <input type="radio" id="answer3a" name="entry.1274106325" value="Denture+or+Partial+Denture">
+            <label class="answer-text" for="answer3a">Denture or Partial Denture</label>
+        </div>
+        <div class="answer" onclick="selectAnswer(this)">
+            <span class="letter-box">B</span>
+            <input type="radio" id="answer3b" name="entry.1274106325" value="Bridge,+Crown">
+            <label class="answer-text" for="answer3b">Bridge, Crown</label>
+        </div>
+        <div class="answer" onclick="selectAnswer(this)">
+            <span class="letter-box">C</span>
+            <input type="radio" id="answer3c" name="entry.1274106325" value="Dental+Implant">
+            <label class="answer-text" for="answer3c">Dental Implant</label>
+        </div>
+        <div class="answer" onclick="selectAnswer(this)">
+            <span class="letter-box">D</span>
+            <input type="radio" id="answer3d" name="entry.1274106325" value="None+of+the+Above">
+            <label class="answer-text" for="answer3d">None of the Above</label>
+        </div>
+        <button type="button" onclick="previousQuestion(3)">Back</button>
+        <button type="button" onclick="nextQuestion(3)">Next</button>
+    </div>
+
+    <!-- Question: How long have you been missing teeth? -->
+    <div class="question" id="question4">
+        <p class="question-text question-number">4 &rarr; How long have you been missing teeth?</p>
+        <div class="answer" onclick="selectAnswer(this)">
+            <span class="letter-box">A</span>
+            <input type="radio" id="answer4a" name="entry.989857289" value="I+Still+Have+Them">
+            <label class="answer-text" for="answer4a">I Still Have Them</label>
+        </div>
+        <div class="answer" onclick="selectAnswer(this)">
+            <span class="letter-box">B</span>
+            <input type="radio" id="answer4b" name="entry.989857289" value="1-6+Months">
+            <label class="answer-text" for="answer4b">1-6 Months</label>
+        </div>
+        <div class="answer" onclick="selectAnswer(this)">
+            <span class="letter-box">C</span>
+            <input type="radio" id="answer4c" name="entry.989857289" value="7-12+Months">
+            <label class="answer-text" for="answer4c">7-12 Months</label>
+        </div>
+        <div class="answer" onclick="selectAnswer(this)">
+            <span class="letter-box">D</span>
+            <input type="radio" id="answer4d" name="entry.989857289" value="1%2B+Years">
+            <label class="answer-text" for="answer4d">1+ Years</label>
+        </div>
+        <div class="answer" onclick="selectAnswer(this)">
+            <span class="letter-box">E</span>
+            <input type="radio" id="answer4e" name="entry.989857289" value="6%2B+Years">
+            <label class="answer-text" for="answer4e">6+ Years</label>
+        </div>
+        <button type="button" onclick="previousQuestion(4)">Back</button>
+        <button type="button" onclick="nextQuestion(4)">Next</button>
+    </div>
+
+    <!-- Question: Do you have difficulty eating and chewing the foods you want? -->
+    <div class="question" id="question5">
+        <p class="question-text question-number">5 &rarr; Do you have difficulty eating and chewing the foods you want?</p>
+        <div class="answer" onclick="selectAnswer(this)">
+            <span class="letter-box">A</span>
+            <input type="radio" id="answer5a" name="entry.37415252" value="Yes">
+            <label class="answer-text" for="answer5a">Yes</label>
+        </div>
+        <div class="answer" onclick="selectAnswer(this)">
+            <span class="letter-box">B</span>
+            <input type="radio" id="answer5b" name="entry.37415252" value="No">
+            <label class="answer-text" for="answer5b">No</label>
+        </div>
+        <button type="button" onclick="previousQuestion(5)">Back</button>
+        <button type="button" onclick="nextQuestion(5)">Next</button>
+    </div>
+
+    <!-- Question: Do you have pain or discomfort in your teeth and (or) gums? -->
+    <div class="question" id="question6">
+        <p class="question-text question-number">6 &rarr; Do you have pain or discomfort in your teeth and (or) gums?</p>
+        <div class="answer" onclick="selectAnswer(this)">
+            <span class="letter-box">A</span>
+            <input type="radio" id="answer6a" name="entry.1696475733" value="Yes">
+            <label class="answer-text" for="answer6a">Yes</label>
+        </div>
+        <div class="answer" onclick="selectAnswer(this)">
+            <span class="letter-box">B</span>
+            <input type="radio" id="answer6b" name="entry.1696475733" value="No">
+            <label class="answer-text" for="answer6b">No</label>
+        </div>
+        <button type="button" onclick="previousQuestion(6)">Back</button>
+        <button type="button" onclick="nextQuestion(6)">Next</button>
+    </div>
+
+    <!-- Question: Do you feel the need to hide your smile from others? -->
+    <div class="question" id="question7">
+        <p class="question-text question-number">7 &rarr; Do you feel the need to hide your smile from others?</p>
+        <div class="answer" onclick="selectAnswer(this)">
+            <span class="letter-box">A</span>
+            <input type="radio" id="answer7a" name="entry.484426111" value="Yes">
+            <label class="answer-text" for="answer7a">Yes</label>
+        </div>
+        <div class="answer" onclick="selectAnswer(this)">
+            <span class="letter-box">B</span>
+            <input type="radio" id="answer7b" name="entry.484426111" value="No">
+            <label class="answer-text" for="answer7b">No</label>
+        </div>
+        <button type="button" onclick="previousQuestion(7)">Back</button>
+        <button type="button" onclick="nextQuestion(7)">Next</button>
+    </div>
+
+    <!-- Question: Have you had a dental implant consultation with another dentist? -->
+    <div class="question" id="question8">
+        <p class="question-text question-number">8 &rarr; Have you had a dental implant consultation with another dentist?</p>
+        <div class="answer" onclick="selectAnswer(this)">
+            <span class="letter-box">A</span>
+            <input type="radio" id="answer8a" name="entry.1606672540" value="Yes">
+            <label class="answer-text" for="answer8a">Yes</label>
+        </div>
+        <div class="answer" onclick="selectAnswer(this)">
+            <span class="letter-box">B</span>
+            <input type="radio" id="answer8b" name="entry.1606672540" value="No">
+            <label class="answer-text" for="answer8b">No</label>
+        </div>
+        <button type="button" onclick="previousQuestion(8)">Back</button>
+        <button type="button" onclick="nextQuestion(8)">Next</button>
+    </div>
+
+    <!-- Question: How ready do you feel to get dental implants? -->
+    <div class="question" id="question9">
+        <p class="question-text question-number">9 &rarr; How ready do you feel to get dental implants?</p>
+        <div class="answer" onclick="selectAnswer(this)">
+            <span class="letter-box">A</span>
+            <input type="radio" id="answer9a" name="entry.1657384206" value="Somewhat+Ready">
+            <label class="answer-text" for="answer9a">Somewhat Ready</label>
+        </div>
+        <div class="answer" onclick="selectAnswer(this)">
+            <span class="letter-box">B</span>
+            <input type="radio" id="answer9b" name="entry.1657384206" value="Very+Ready">
+            <label class="answer-text" for="answer9b">Very Ready</label>
+        </div>
+        <div class="answer" onclick="selectAnswer(this)">
+            <span class="letter-box">C</span>
+            <input type="radio" id="answer9c" name="entry.1657384206" value="I+Need+Something+FAST!">
+            <label class="answer-text" for="answer9c">I Need Something FAST!</label>
+        </div>
+        <button type="button" onclick="previousQuestion(9)">Back</button>
+        <button type="button" onclick="nextQuestion(9)">Next</button>
+    </div>
+
+    <!-- Question: Dental Implant procedures are not covered by insurance. However, many affordable payment plans are available. Are you interested in a payment plan option? -->
+    <div class="question" id="question10">
+        <p class="question-text question-number">10 &rarr; Dental Implant procedures are not covered by insurance. However, many affordable payment plans are available. Are you interested in a payment plan option?</p>
+        <div class="answer" onclick="selectAnswer(this)">
+            <span class="letter-box">A</span>
+            <input type="radio" id="answer10a" name="entry.758340812" value="Yes.+I'm+interested+in+affordable+payment+plan+options">
+            <label class="answer-text" for="answer10a">Yes. I'm interested in affordable payment plan options</label>
+        </div>
+        <div class="answer" onclick="selectAnswer(this)">
+            <span class="letter-box">B</span>
+            <input type="radio" id="answer10b" name="entry.758340812" value="No.+I've+been+saving+for+this+type+of+procedure+and+will+not+need+a+payment+plan">
+            <label class="answer-text" for="answer10b">No. I've been saving for this type of procedure and will not need a payment plan</label>
+        </div>
+        <button type="button" onclick="previousQuestion(10)">Back</button>
+        <button type="button" onclick="nextQuestion(10)">Next</button>
+    </div>
+
+    <!-- Question: Payment plans are available based on credit approval of the patient or a co-signer. Which best describes your credit? -->
+    <div class="question" id="question11">
+        <p class="question-text question-number">11 &rarr; Payment plans are available based on credit approval of the patient or a co-signer. Which best describes your credit?</p>
+        <div class="answer" onclick="selectAnswer(this)">
+            <span class="letter-box">A</span>
+            <input type="radio" id="answer11a" name="entry.1007185471" value="Under+500-599">
+            <label class="answer-text" for="answer11a">Under 500-599</label>
+        </div>
+        <div class="answer" onclick="selectAnswer(this)">
+            <span class="letter-box">B</span>
+            <input type="radio" id="answer11b" name="entry.1007185471" value="600-679">
+            <label class="answer-text" for="answer11b">600-679</label>
+        </div>
+        <div class="answer" onclick="selectAnswer(this)">
+            <span class="letter-box">C</span>
+            <input type="radio" id="answer11c" name="entry.1007185471" value="680-750">
+            <label class="answer-text" for="answer11c">680-750</label>
+        </div>
+        <div class="answer" onclick="selectAnswer(this)">
+            <span class="letter-box">D</span>
+            <input type="radio" id="answer11d" name="entry.1007185471" value="750%2B">
+            <label class="answer-text" for="answer11d">750+</label>
+        </div>
+        <div class="answer" onclick="selectAnswer(this)">
+            <span class="letter-box">E</span>
+            <input type="radio" id="answer11e" name="entry.1007185471" value="I+Don't+Know">
+            <label class="answer-text" for="answer11e">I Don't Know</label>
+        </div>
+        <div class="answer" onclick="selectAnswer(this)">
+            <span class="letter-box">F</span>
+            <input type="radio" id="answer11f" name="entry.1007185471" value="I'm+Not+Interested+In+Payment+Options">
+            <label class="answer-text" for="answer11f">I'm Not Interested In Payment Options</label>
+        </div>
+        <button type="button" onclick="previousQuestion(11)">Back</button>
+        <button type="button" onclick="nextQuestion(11)">Next</button>
+    </div>
+
+    <!-- Question: Which Clinic Location Is Closest To You? -->
+    <div class="question" id="question12">
+        <p class="question-text question-number">12 &rarr; Which Clinic Location Is Closest To You?</p>
+        <div class="answer" onclick="selectAnswer(this)">
+            <span class="letter-box">A</span>
+            <input type="radio" id="answer12a" name="entry.376256521" value="Dana+Point">
+            <label class="answer-text" for="answer12a">Dana Point</label>
+        </div>
+        <div class="answer" onclick="selectAnswer(this)">
+            <span class="letter-box">B</span>
+            <input type="radio" id="answer12b" name="entry.376256521" value="Huntington+Beach">
+            <label class="answer-text" for="answer12b">Huntington Beach</label>
+        </div>
+        <div class="answer" onclick="selectAnswer(this)">
+            <span class="letter-box">C</span>
+            <input type="radio" id="answer12c" name="entry.376256521" value="Riverside">
+            <label class="answer-text" for="answer12c">Riverside</label>
+        </div>
+        <div class="answer" onclick="selectAnswer(this)">
+            <span class="letter-box">D</span>
+            <input type="radio" id="answer12d" name="entry.376256521" value="West+Covina">
+            <label class="answer-text" for="answer12d">West Covina</label>
+        </div>
+        <div class="answer" onclick="selectAnswer(this)">
+            <span class="letter-box">E</span>
+            <input type="radio" id="answer12e" name="entry.376256521" value="Reseda">
+            <label class="answer-text" for="answer12e">Reseda</label>
+        </div>
+        <div class="answer" onclick="selectAnswer(this)">
+            <span class="letter-box">F</span>
+            <input type="radio" id="answer12f" name="entry.376256521" value="Palmdale">
+            <label class="answer-text" for="answer12f">Palmdale</label>
+        </div>
+        <div class="answer" onclick="selectAnswer(this)">
+            <span class="letter-box">G</span>
+            <input type="radio" id="answer12g" name="entry.376256521" value="Out+of+State">
+            <label class="answer-text" for="answer12g">Out of State</label>
+        </div>
+        <div class="answer" onclick="selectAnswer(this)">
+            <span class="letter-box">H</span>
+            <input type="radio" id="answer12h" name="entry.376256521" value="Unsure">
+            <label class="answer-text" for="answer12h">Unsure</label>
+        </div>
+        <button type="button" onclick="previousQuestion(12)">Back</button>
+        <button type="button" onclick="nextQuestion(12)">Next</button>
+    </div>
+
+    <!-- Submit button on the last question -->
+    <div class="question" id="question13">
+        <p class="question-text question-number">13 &rarr; Payment plans are available based on credit approval of the patient or a co-signer. Which best describes your credit?</p>
+        <div class="answer" onclick="selectAnswer(this)">
+            <span class="letter-box">A</span>
+            <input type="radio" id="answer13a" name="entry.1007185471" value="Under+500-599">
+            <label class="answer-text" for="answer13a">Under 500-599</label>
+        </div>
+        <div class="answer" onclick="selectAnswer(this)">
+            <span class="letter-box">B</span>
+            <input type="radio" id="answer13b" name="entry.1007185471" value="600-679">
+            <label class="answer-text" for="answer13b">600-679</label>
+        </div>
+        <div class="answer" onclick="selectAnswer(this)">
+            <span class="letter-box">C</span>
+            <input type="radio" id="answer13c" name="entry.1007185471" value="680-750">
+            <label class="answer-text" for="answer13c">680-750</label>
+        </div>
+        <div class="answer" onclick="selectAnswer(this)">
+            <span class="letter-box">D</span>
+            <input type="radio" id="answer13d" name="entry.1007185471" value="750%2B">
+            <label class="answer-text" for="answer13d">750+</label>
+        </div>
+        <div class="answer" onclick="selectAnswer(this)">
+            <span class="letter-box">E</span>
+            <input type="radio" id="answer13e" name="entry.1007185471" value="I+Don't+Know">
+            <label class="answer-text" for="answer13e">I Don't Know</label>
+        </div>
+        <div class="answer" onclick="selectAnswer(this)">
+            <span class="letter-box">F</span>
+            <input type="radio" id="answer13f" name="entry.1007185471" value="I'm+Not+Interested+In+Payment+Options">
+            <label class="answer-text" for="answer13f">I'm Not Interested In Payment Options</label>
+        </div>
+        <button type="button" onclick="previousQuestion(13)">Back</button>
+        <input type="submit" value="Submit">
+    </div>
+
+</form>
+
+<script>
+    let currentQuestion = 1;
+    const totalQuestions = 13;
+
+    function updateProgressBar() {
+        const progressBar = document.getElementById('progressBar');
+        const progress = (currentQuestion / totalQuestions) * 100;
+        progressBar.style.width = `${progress}%`;
+    }
+
+    function nextQuestion(questionNumber) {
+        if (questionNumber < totalQuestions) {
+            document.getElementById(`question${questionNumber}`).classList.remove('active');
+            document.getElementById(`question${questionNumber + 1}`).classList.add('active');
+            currentQuestion++;
+            updateProgressBar();
+        }
+    }
+
+    function previousQuestion(questionNumber) {
+        if (questionNumber > 1) {
+            document.getElementById(`question${questionNumber}`).classList.remove('active');
+            document.getElementById(`question${questionNumber - 1}`).classList.add('active');
+            currentQuestion--;
+            updateProgressBar();
+        }
+    }
+
+    function selectAnswer(answerElement) {
+        const parentDiv = answerElement.parentElement;
+        const radioInputs = parentDiv.querySelectorAll('input[type="radio"]');
+        const answerDivs = parentDiv.querySelectorAll('.answer');
+
+        radioInputs.forEach(radio => {
+            if (radio.checked) {
+                radio.checked = false;
+            }
+        });
+
+        answerDivs.forEach(div => {
+            div.classList.remove('selected');
+        });
+
+        answerElement.querySelector('input[type="radio"]').checked = true;
+        answerElement.classList.add('selected');
+    }
+
+    updateProgressBar();
+</script>
+</body>
+</html>
